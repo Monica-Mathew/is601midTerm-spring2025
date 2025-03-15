@@ -1,7 +1,7 @@
 from typing import List
 from calculator.calculation import Calculation
 
-class Calcualtions:
+class Calculations:
     history: List[Calculation] =[] # history object to store list of calculations.
 
     @classmethod # adding as a classmethod to bind to the class itself to have it shared across all instances of clas

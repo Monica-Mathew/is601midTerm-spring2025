@@ -1,8 +1,5 @@
-
-
 from decimal import Decimal
 from typing import Callable
-
 
 class Calculation: # Calculation class is used to create a instance of the calculation, which can be later stored
     def __init__(self,a,b,operation):
