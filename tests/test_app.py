@@ -34,6 +34,7 @@ def test_app_menu_command(capfd, monkeypatch):
     assert "Printing Menu" in captured.out
     assert "- add" in captured.out
     assert "- divide" in captured.out
+    assert "- modulo" in captured.out
     assert "- multiply" in captured.out
     assert "- subtract" in captured.out
     assert excinfo.value.code == 1
@@ -44,6 +45,7 @@ def test_app_menu_command(capfd, monkeypatch):
     (['10 2 subtract', 'exit'], "The result of 10 subtract 2 is equal to 8\nExiting Command line"),
     (['4 5 multiply', 'exit'], "The result of 4 multiply 5 is equal to 20\nExiting Command line"),
     (['20 4 divide', 'exit'], "The result of 20 divide 4 is equal to 5\nExiting Command line"),
+    (['2 2 modulo', 'exit'], "The result of 2 modulo 2 is equal to 0\nExiting Command line"),
     (['1 0 divide', 'exit'], "An error occured : Cannot divide by zero - Exception\nExiting Command line"),
     (['9 3 unknown', 'exit'], "No such command: unknown\nExiting Command line"),
     (['a 3 add', 'exit'], "Invalid number input: a or 3 is not a valid number.\nExiting Command line"),
