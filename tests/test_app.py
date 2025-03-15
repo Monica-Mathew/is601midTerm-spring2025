@@ -1,6 +1,7 @@
 '''My App test'''
 import pytest
 from app import App
+from calculator.calculations import Calculations
 
 def test_app_start_exit_command(capfd, monkeypatch):
     """Test that the REPL exits correctly on 'exit' command."""
@@ -34,11 +35,17 @@ def test_app_menu_command(capfd, monkeypatch):
     assert "Printing Menu" in captured.out
     assert "- add" in captured.out
     assert "- divide" in captured.out
+    assert "- history" in captured.out
     assert "- modulo" in captured.out
     assert "- multiply" in captured.out
     assert "- subtract" in captured.out
     assert excinfo.value.code == 1
     assert "Exiting Command line" in captured.out
+
+@pytest.fixture(autouse=True)
+def clear_history():
+    '''clearing history'''
+    Calculations.clear_history()
 
 @pytest.mark.parametrize("inputs, expected_output", [
     (['5 3 add', 'exit'], "The result of 5 add 3 is equal to 8\nExiting Command line"),
@@ -49,7 +56,9 @@ def test_app_menu_command(capfd, monkeypatch):
     (['1 0 divide', 'exit'], "An error occured : Cannot divide by zero - Exception\nExiting Command line"),
     (['9 3 unknown', 'exit'], "No such command: unknown\nExiting Command line"),
     (['a 3 add', 'exit'], "Invalid number input: a or 3 is not a valid number.\nExiting Command line"),
-    (['5 b subtract', 'exit'], "Invalid number input: 5 or b is not a valid number.\nExiting Command line")
+    (['5 b subtract', 'exit'], "Invalid number input: 5 or b is not a valid number.\nExiting Command line"),
+    (['history', 'exit'], "No history available to show.\nExiting Command line"),
+    (['history', '5 0 add', 'history', 'exit'], "No history available to show.\nThe result of 5 add 0 is equal to 5\nHistory of the calculations:\n- Calcualtion of 5 and 0 with add\nExiting Command line")
 ])
 def test_app_operations(inputs, expected_output, capfd, monkeypatch):
     """Test how the REPL handles various calculator operations and errors."""
