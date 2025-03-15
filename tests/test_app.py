@@ -51,15 +51,12 @@ def test_app_menu_command(capfd, monkeypatch):
 ])
 def test_app_operations(inputs, expected_output, capfd, monkeypatch):
     """Test how the REPL handles various calculator operations and errors."""
-    # Simulate user input using monkeypatch
     def input_side_effect(prompt):
-        return inputs.pop(0)  # pop inputs from the list one by one
+        return inputs.pop(0)  
     monkeypatch.setattr('builtins.input', input_side_effect)
-    # Run the app
     app = App()
-    with pytest.raises(SystemExit):  # Expecting a SystemExit when the app exits
+    with pytest.raises(SystemExit): 
         app.start()
-    # Capture and assert the output from the REPL loop
     captured = capfd.readouterr()
     full_expected_output = f"Type 'exit' to exit, 'menu' to see list of operations\n{expected_output}"
     assert full_expected_output in captured.out  # Check if the expected output is in the captured output
