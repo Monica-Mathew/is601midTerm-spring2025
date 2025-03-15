@@ -12,7 +12,7 @@ class Calcualtions:
     @classmethod
     def get_history(cls):
         '''get the history of calculation'''
-        return cls.history #we are accessing the variable through the method
+        return cls.history # we are accessing the variable through the method
     
     @classmethod
     def clear_history(cls):
