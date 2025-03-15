@@ -1,3 +1,4 @@
+'''Add plugin'''
 from decimal import Decimal
 import sys
 from app.commands import Command
@@ -5,7 +6,7 @@ from calculator import Calculator
 
 
 class AddCommand(Command):
-    
+    '''Add command class'''
     def execute(self,a,b): 
         '''being called from CommandHandler to execute the function'''
         a_decimal, b_decimal = map(Decimal, [a,b])

@@ -4,7 +4,7 @@ from abc import ABC, abstractmethod
 class Command(ABC):
     '''Command class method '''
     @abstractmethod
-    def execute(self):
+    def execute(self,a,b):
         '''execute method'''
         pass # pylint: disable=unnecessary-pass
 
