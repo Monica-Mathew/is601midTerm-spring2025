@@ -46,5 +46,3 @@ def test_app_subtract_command(capfd, monkeypatch):
     captured = capfd.readouterr()
     assert "Exiting Command line" in captured.out
     assert str(e.value) == '1'
-
-
