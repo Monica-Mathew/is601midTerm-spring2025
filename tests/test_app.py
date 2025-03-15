@@ -38,3 +38,28 @@ def test_app_menu_command(capfd, monkeypatch):
     assert "- subtract" in captured.out
     assert excinfo.value.code == 1
     assert "Exiting Command line" in captured.out
+
+@pytest.mark.parametrize("inputs, expected_output", [
+    (['5 3 add', 'exit'], "The result of 5 add 3 is equal to 8\nExiting Command line"),
+    (['10 2 subtract', 'exit'], "The result of 10 subtract 2 is equal to 8\nExiting Command line"),
+    (['4 5 multiply', 'exit'], "The result of 4 multiply 5 is equal to 20\nExiting Command line"),
+    (['20 4 divide', 'exit'], "The result of 20 divide 4 is equal to 5\nExiting Command line"),
+    (['1 0 divide', 'exit'], "An error occured : Cannot divide by zero - Exception\nExiting Command line"),
+    (['9 3 unknown', 'exit'], "No such command: unknown\nExiting Command line"),
+    (['a 3 add', 'exit'], "Invalid number input: a or 3 is not a valid number.\nExiting Command line"),
+    (['5 b subtract', 'exit'], "Invalid number input: 5 or b is not a valid number.\nExiting Command line")
+])
+def test_app_operations(inputs, expected_output, capfd, monkeypatch):
+    """Test how the REPL handles various calculator operations and errors."""
+    # Simulate user input using monkeypatch
+    def input_side_effect(prompt):
+        return inputs.pop(0)  # pop inputs from the list one by one
+    monkeypatch.setattr('builtins.input', input_side_effect)
+    # Run the app
+    app = App()
+    with pytest.raises(SystemExit):  # Expecting a SystemExit when the app exits
+        app.start()
+    # Capture and assert the output from the REPL loop
+    captured = capfd.readouterr()
+    full_expected_output = f"Type 'exit' to exit, 'menu' to see list of operations\n{expected_output}"
+    assert full_expected_output in captured.out  # Check if the expected output is in the captured output
