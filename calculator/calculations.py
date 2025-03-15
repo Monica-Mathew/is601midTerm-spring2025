@@ -1,7 +1,9 @@
+'''Calculations file'''
 from typing import List
 from calculator.calculation import Calculation
 
 class Calculations:
+    '''Calculations class'''
     history: List[Calculation] =[] # history object to store list of calculations.
 
     @classmethod # adding as a classmethod to bind to the class itself to have it shared across all instances of clas
@@ -23,12 +25,10 @@ class Calculations:
     def get_latest(cls) -> Calculation:
         '''gets latest calculation'''
         if cls.history:
-            return cls.history[-1];
+            return cls.history[-1]
         return None
     
     @classmethod
     def find_by_operation(cls, operation_name: str) -> Calculation:
         '''add a new calculation to the history'''
         return [calc for calc in cls.history if calc.operation.__name__ == operation_name]
-
-
