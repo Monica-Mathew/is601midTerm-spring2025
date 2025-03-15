@@ -2,7 +2,6 @@
 import importlib
 import sys
 import pkgutil
-import multiprocessing
 from app.commands import CommandHandler
 from app.commands import Command
 
@@ -10,12 +9,6 @@ class App:
     '''init def'''
     def __init__(self): # Constructor
         self.command_handler = CommandHandler()
-    
-    # def run_in_process(self, target, *args): 
-    #     '''multiprocessing'''
-    #     process = multiprocessing.Process(target=target, args=args)
-    #     process.start()
-    #     process.join()  
 
     def load_plugins(self):
         '''loading plugins dynamically'''
@@ -54,4 +47,3 @@ class App:
             
             num1, num2, operation = command_line_input.split()
             self.command_handler.execute_command(operation, num1, num2)
-            # self.run_in_process(self.command_handler.execute_command, operation, num1,num2)
