@@ -19,7 +19,7 @@ class CommandHandler:
         '''registering the commands with command handler'''
         self.commands[command_name] = command
 
-    def execute_command(self, command_name: str,num1, num2):
+    def execute_command(self, command_name: str,num1=None, num2=None):
         '''function to execute based on the command name'''
         try:
             command = self.commands[command_name]

@@ -40,6 +40,9 @@ class App:
                 print("Printing Menu")
                 for command in self.command_handler.commands:
                     print(f"- {command}\n")
+                continue 
+            if(len(command_line_input.split()) == 1 and command_line_input.split()[0]=="history"):
+                self.command_handler.execute_command(command_line_input.split()[0])
                 continue
             if(len(command_line_input.split())) != 3:
                 print("Usage : <number1> <number2> <operation>")
