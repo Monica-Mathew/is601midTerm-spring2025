@@ -38,10 +38,13 @@ def test_app_menu_command(capfd, monkeypatch):
     with pytest.raises(SystemExit) as excinfo:
         app.start()
     captured = capfd.readouterr()
-    assert "Printing Menu" in captured.out
     assert "- add" in captured.out
     assert "- divide" in captured.out
-    assert "- history" in captured.out
+    assert "- history-clear" in captured.out
+    assert "- history-delete" in captured.out
+    assert "- history-load" in captured.out
+    assert "- history-save" in captured.out
+    assert "- history-show" in captured.out
     assert "- modulo" in captured.out
     assert "- multiply" in captured.out
     assert "- subtract" in captured.out
