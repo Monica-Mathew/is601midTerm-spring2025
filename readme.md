@@ -12,6 +12,9 @@
 4. python3 main.py 2 2 add (To run main.py)
 4. deactivate
 
+## Run the file
+
+1. python main.py
 
 ## Testing
 1. pytest
