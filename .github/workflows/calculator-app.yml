@@ -28,10 +28,11 @@ jobs:
         python -m pip install --upgrade pip
         pip install flake8 pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-    - name: Set environment variable for DATA_DIRECTORY and FILE_NAME
+    - name: Set environment variable for DATA_DIRECTORY, FILE_NAME and LOGGING_CONF_PATH
       run: |
         echo "DATA_DIRECTORY=${{ secrets.DATA_DIRECTORY }}" >> $GITHUB_ENV
         echo "FILE_NAME=${{ secrets.FILE_NAME }}" >> $GITHUB_ENV
+        echo "LOGGING_CONF_PATH=${{ secrets.LOGGING_CONF_PATH }}" >> $GITHUB_ENV
     - name: Test with pytest --pylint --cov
       run: |
         pytest --pylint --cov
