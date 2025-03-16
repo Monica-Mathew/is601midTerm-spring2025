@@ -57,7 +57,6 @@ def clear_history():
     Calculations.clear_history()
 
 @pytest.mark.parametrize("inputs, expected_output", [
-    (['5 5 add', 'history-save','history-load', 'exit'], "The result of 5 add 5 is equal to 10\nAdding in memory calculation history to csv\nHistory of the calculations loaded from csv:\n5 add 5 = 10\nExiting Command line"),
     (['5 3 add', 'exit'], "The result of 5 add 3 is equal to 8\nExiting Command line"),
     (['10 2 subtract', 'exit'], "The result of 10 subtract 2 is equal to 8\nExiting Command line"),
     (['4 5 multiply', 'exit'], "The result of 4 multiply 5 is equal to 20\nExiting Command line"),
@@ -69,7 +68,8 @@ def clear_history():
     (['5 b subtract', 'exit'], "Invalid number input: 5 or b is not a valid number.\nExiting Command line"),
     (['history-show', '2 2 add', 'history-save', 'exit'], "No history available to show, start adding calculations.\nThe result of 2 add 2 is equal to 4\nAdding in memory calculation history to csv\nExiting Command line"),
     (['history-delete', 'history-load', 'exit'], "History file has been cleared.\nNo history available to show from csv file.\nExiting Command line"),
-    (['history-clear', 'history-show', '5 0 add', 'history-show', 'exit'],"No history available to show, start adding calculations.\nThe result of 5 add 0 is equal to 5\nHistory of the calculations from memory:\nCalcualtion of 5 and 0 with add, Result: 5.00\nExiting Command line")
+    (['history-clear', 'history-show', '5 0 add', 'history-show','history-save','history-load','exit'],
+     "No history available to show, start adding calculations.\nThe result of 5 add 0 is equal to 5\nHistory of the calculations from memory:\nCalcualtion of 5 and 0 with add, Result: 5.00\nAdding in memory calculation history to csv\nHistory of the calculations loaded from csv:\n5 add 0 = 5\nExiting Command line")
 ])
 def test_app_operations(inputs, expected_output, capfd, monkeypatch):
     """Test how the REPL handles various calculator operations and errors."""
