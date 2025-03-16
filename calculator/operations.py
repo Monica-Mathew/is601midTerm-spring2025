@@ -22,5 +22,5 @@ def divide(a: Decimal, b: Decimal) -> Decimal:
     try:
         return a / b  # Attempting division  #EAFP
     except ZeroDivisionError:
-        logging.error("Division by zero")
+        logging.error("Division by zero attempted")
         raise ValueError("Cannot divide by zero - Exception")
