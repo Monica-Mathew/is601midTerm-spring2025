@@ -45,7 +45,7 @@ def test_app_menu_command(capfd, monkeypatch):
 @pytest.fixture(autouse=True)
 def clear_history():
     '''clearing history'''
-    Calculations.clear_history()
+    Calculations.clear_history_csv()
 
 @pytest.mark.parametrize("inputs, expected_output", [
     (['5 3 add', 'exit'], "The result of 5 add 3 is equal to 8\nExiting Command line"),
@@ -57,8 +57,8 @@ def clear_history():
     (['9 3 unknown', 'exit'], "No such command: unknown\nExiting Command line"),
     (['a 3 add', 'exit'], "Invalid number input: a or 3 is not a valid number.\nExiting Command line"),
     (['5 b subtract', 'exit'], "Invalid number input: 5 or b is not a valid number.\nExiting Command line"),
-    (['history', 'exit'], "No history available to show.\nExiting Command line"),
-    (['history', '5 0 add', 'history', 'exit'], "No history available to show.\nThe result of 5 add 0 is equal to 5\nHistory of the calculations:\n- Calcualtion of 5 and 0 with add\nExiting Command line")
+    (['history-load', 'exit'], "No history available to show.\nExiting Command line"),
+    (['history-load', '5 0 add', 'history-load', 'exit'], "No history available to show.\nThe result of 5 add 0 is equal to 5\nHistory of the calculations:\n5 add 0 = 5\nExiting Command line")
 ])
 def test_app_operations(inputs, expected_output, capfd, monkeypatch):
     """Test how the REPL handles various calculator operations and errors."""
