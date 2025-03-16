@@ -1,5 +1,6 @@
 '''Calculations file'''
 from decimal import Decimal
+import logging
 import os
 import pandas as pd
 from calculator.calculation import Calculation
@@ -37,11 +38,12 @@ class Calculations:
 
     historyPd: pd.DataFrame 
 
-    data_dir = './data'
+    data_dir =os.getenv('DATA_DIRECTORY','./data') # adding default directory
+    logging.info(f"Data directory path - {data_dir}")
     if not os.path.exists(data_dir):
         os.makedirs(data_dir)
-        
-    csv_file_path = os.path.join(data_dir, 'calculations.csv')
+    file_name =os.getenv('FILE_NAME','calculations.csv') # adding default file name
+    csv_file_path = os.path.join(data_dir, file_name)
 
     @classmethod
     def add_calculation_to_history_csv(cls, calculation: Calculation, result:Decimal):
@@ -53,10 +55,14 @@ class Calculations:
             'result': result
         }
         cls.historyPd =  pd.DataFrame([new_calculation])
+        
         if os.path.exists(cls.csv_file_path):
             cls.historyPd.to_csv(cls.csv_file_path, mode='a', header=False, index=False)
         else:
             cls.historyPd.to_csv(cls.csv_file_path, mode='w', header=True, index=False)
+        absolute_path = os.path.abspath(cls.csv_file_path)
+        logging.info(f'the relative path  to save my file is {cls.csv_file_path}')
+        logging.info(f'the absolute path  to save my file is {absolute_path}')
 
     @classmethod
     def get_history_csv(cls):

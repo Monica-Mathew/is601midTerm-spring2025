@@ -1,6 +1,7 @@
 '''Command line file'''
 from abc import ABC, abstractmethod
 from decimal import InvalidOperation
+import logging
 
 class Command(ABC):
     '''Command class method '''
@@ -27,4 +28,5 @@ class CommandHandler:
         except KeyError:
             print(f"No such command: {command_name}")
         except InvalidOperation:
+            logging.warning("Invalid operation - numbers may not be valid")
             print(f"Invalid number input: {num1} or {num2} is not a valid number.")
