@@ -9,7 +9,6 @@
 1. source venv/bin/activate
 2. pip3 install -r requirements.txt
 3. pip3 freeze > requirements.txt 
-4. python3 main.py 2 2 add (To run main.py)
 4. deactivate
 
 ## Run the file
