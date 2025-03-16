@@ -38,7 +38,7 @@ class Calculations:
 
     historyPd: pd.DataFrame 
 
-    data_dir =os.getenv('DATA_DIRECTORY','./data') # adding default directory
+    data_dir =os.getenv('DATA_DIRECTORY') # adding default directory
     logging.info(f"Data directory path - {data_dir}")
     if not os.path.exists(data_dir):
         os.makedirs(data_dir)
