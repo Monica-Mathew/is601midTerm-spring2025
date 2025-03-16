@@ -1,5 +1,6 @@
 '''Operations file'''
 from decimal import Decimal
+import logging
 
 def add(a: Decimal, b:Decimal) -> Decimal:
     '''Add operation'''
@@ -13,5 +14,6 @@ def multiply(a: Decimal,b:Decimal) -> Decimal:
 def divide(a: Decimal,b:Decimal) -> Decimal:
     '''Divide operation'''
     if b ==0:
+        logging.error("Divsion by zero")
         raise ValueError("Cannot divide by zero - Exception")
     return a/b
