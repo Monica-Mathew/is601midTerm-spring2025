@@ -7,21 +7,20 @@ import pkgutil
 import logging.config
 from app.commands import CommandHandler
 from app.commands import Command
-from calculator.calculations import Calculations
 from dotenv import load_dotenv
 
 class App:
     '''init def'''
     def __init__(self): # Constructor
         os.makedirs('logs', exist_ok=True)
-        self.configure_logging()
         load_dotenv() #loads from .env file contents
         self.settings = self.load_environment_variables()
         self.settings.setdefault('ENVIRONMENT', 'TESTING') # sets default only if it is missing, right now in .env I have it as DEVELOPMENT
+        self.configure_logging()
         self.command_handler = CommandHandler()
     
     def configure_logging(self):
-        logging_conf_path = 'logging.conf'
+        logging_conf_path = self.get_environment_variable('LOGGING_CONF_PATH')
         if os.path.exists(logging_conf_path):
             logging.config.fileConfig(logging_conf_path, disable_existing_loggers=False)
         else:
@@ -34,7 +33,7 @@ class App:
         return settings
     
     def get_environment_variable(self, envVar: str ='ENVIRONMENT'):
-        logging.info("Fetching environmnet variable")
+        logging.info("Fetching environment variable")
         return self.settings[envVar]
 
     def load_plugins(self):
