@@ -3,10 +3,10 @@ import logging
 from app.commands import Command
 from calculator.calculations import Calculations
 
-class LoadHistoryCommand(Command):
+class ClearHistoryCommand(Command):
     '''Add ClearHistory command class'''
     def execute(self,a,b): 
-        logging.info("Clearing calculation history")
+        logging.info("Clearing calculation history in memory")
         '''being called from CommandHandler to execute the function'''
-        Calculations.clear_history_csv()
+        Calculations.clear_history()
         

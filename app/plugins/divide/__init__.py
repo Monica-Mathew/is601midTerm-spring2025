@@ -12,8 +12,8 @@ class DivideCommand(Command):
         a_decimal, b_decimal = map(Decimal, [a,b])
         try:
             logging.info("Divide command function invoked")
-            print(f"The result of {a_decimal} divide {b_decimal} is equal to {Calculator.divide(a_decimal,b_decimal)}")
+            print(f"The result of {a_decimal} divide {b_decimal} is equal to {Calculator.divide(a_decimal,b_decimal):.2f}")
         except ZeroDivisionError:
             print("Error :Division by zero")
-        except Exception as e:# pylint: disable=broad-exception-caught
+        except Exception as e:# pylint: disable=broad-exception-caught 
             print(f"An error occured : {e}") 

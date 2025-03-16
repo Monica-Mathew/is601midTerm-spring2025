@@ -9,10 +9,10 @@ class LoadHistoryCommand(Command):
         '''being called from CommandHandler to execute the function'''
         history = Calculations.get_history_csv()
         if history is None or history.empty: 
-            logging.info("No history available")
-            print("No history available to show.")
+            logging.info("No history available from csv file")
+            print("No history available to show from csv file.")
         else:
-            print("History of the calculations:")
-            logging.info("Printing calculation history")
+            print("History of the calculations loaded from csv:")
+            logging.info("Printing calculation history from csv")
             for index, row in history.iterrows(): # pylint: disable =unused-variable
                 print(f"{row['num1']} {row['operation']} {row['num2']} = {row['result']}")

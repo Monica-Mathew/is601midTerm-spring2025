@@ -7,6 +7,7 @@ import pkgutil
 import logging.config
 from app.commands import CommandHandler
 from app.commands import Command
+from calculator.calculations import Calculations
 from dotenv import load_dotenv
 
 class App:
