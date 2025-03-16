@@ -1,10 +1,9 @@
 '''Calculations file'''
-from decimal import Decimal
 import logging
 import os
-import sys
 from typing import List
 import pandas as pd
+from app import App 
 from calculator.calculation import Calculation
 import atexit
 
@@ -41,11 +40,13 @@ class Calculations:
 
     historyPd: pd.DataFrame  # history dataframe to store list of calculations in csv file.
 
-    data_dir =os.getenv('DATA_DIRECTORY','./data') # adding default directory
+    app_instance = App()
+    data_dir = app_instance.get_environment_variable('DATA_DIRECTORY') # grabbing DATA_DIRECTORY from env
     logging.info(f"Data directory path - {data_dir}")
     if not os.path.exists(data_dir):
         os.makedirs(data_dir)
-    file_name =os.getenv('FILE_NAME','calculations.csv') # adding default file name
+    
+    file_name= app_instance.get_environment_variable('FILE_NAME') # grabbing FILE_NAME from env
     csv_file_path = os.path.join(data_dir, file_name)
     
     @classmethod
@@ -91,17 +92,6 @@ class Calculations:
             return cls.historyPd
         logging.info("Printing out the saved history")
         return pd.DataFrame(columns=['num1', 'num2', 'operation', 'result'])
-    
-    # @classmethod
-    # def clear_history_csv(cls):
-    #     '''Clears the history temporarily'''
-    #     cls.historyPd = pd.DataFrame(columns=['num1', 'num2', 'operation', 'result'])
-    #     if os.path.exists(cls.csv_file_path):
-    #         cls.historyPd.to_csv(cls.csv_file_path, index=False)
-    #         print(f"History file '{cls.csv_file_path}' has been cleared.")
-    #     else:
-    #         print("No history file to be cleared.")
-
     
     @classmethod
     def delete_history_from_csv(cls):
