@@ -1,5 +1,8 @@
 '''Calculations file'''
+from decimal import Decimal
 from typing import List
+import os
+import pandas as pd
 from calculator.calculation import Calculation
 
 class Calculations:
@@ -32,3 +35,55 @@ class Calculations:
     def find_by_operation(cls, operation_name: str) -> Calculation:
         '''add a new calculation to the history'''
         return [calc for calc in cls.history if calc.operation.__name__ == operation_name]
+
+    historyPd: pd.DataFrame 
+
+    data_dir = './data'
+    if not os.path.exists(data_dir):
+        os.makedirs(data_dir)
+        
+    csv_file_path = os.path.join(data_dir, 'calculations.csv')
+
+    @classmethod
+    def add_calculation_to_history_csv(cls, calculation: Calculation, result:Decimal):
+        '''Add a new calculation to the historyPd using Pandas'''
+        new_calculation = {
+            'num1': calculation.a,
+            'num2': calculation.b,
+            'operation': calculation.operation.__name__,
+            'result': result
+        }
+        cls.historyPd =  pd.DataFrame([new_calculation])
+        if os.path.exists(cls.csv_file_path):
+            cls.historyPd.to_csv(cls.csv_file_path, mode='a', header=False, index=False)
+        else:
+            cls.historyPd.to_csv(cls.csv_file_path, mode='w', header=True, index=False)
+
+    @classmethod
+    def get_history_csv(cls):
+        '''Get the history of calculations as a DataFrame'''
+        if os.path.exists(cls.csv_file_path):
+            cls.historyPd = pd.read_csv(cls.csv_file_path)
+            return cls.historyPd
+        return pd.DataFrame(columns=['num1', 'num2', 'operation', 'result'])
+    
+    @classmethod
+    def clear_history_csv(cls):
+        '''Clears the history temporarily'''
+        cls.historyPd = pd.DataFrame(columns=['num1', 'num2', 'operation', 'result'])
+        if os.path.exists(cls.csv_file_path):
+            cls.historyPd.to_csv(cls.csv_file_path, index=False)
+            print(f"History file '{cls.csv_file_path}' has been cleared.")
+        else:
+            print("No history file to be cleared.")
+
+    
+    @classmethod
+    def delete_history_from_csv(cls):
+        '''Delete the history entirely from the CSV file'''
+        cls.historyPd = pd.DataFrame(columns=['num1', 'num2', 'operation', 'result'])
+        if os.path.exists(cls.csv_file_path):
+            os.remove(cls.csv_file_path)  
+            print(f"History file '{cls.csv_file_path}' has been deleted.")
+        else:
+            print(f"No history file found at '{cls.csv_file_path}' to delete.")

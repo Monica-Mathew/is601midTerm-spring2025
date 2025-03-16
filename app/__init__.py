@@ -41,7 +41,7 @@ class App:
                 for command in self.command_handler.commands:
                     print(f"- {command}\n")
                 continue 
-            if(len(command_line_input.split()) == 1 and command_line_input.split()[0]=="history"):
+            if(len(command_line_input.split()) == 1 and command_line_input.split()[0].startswith("history")):
                 self.command_handler.execute_command(command_line_input.split()[0])
                 continue
             if(len(command_line_input.split())) != 3:
