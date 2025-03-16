@@ -11,9 +11,16 @@ def subtract(a: Decimal,b:Decimal) -> Decimal:
 def multiply(a: Decimal,b:Decimal) -> Decimal:
     '''Multiply operation'''
     return a*b
-def divide(a: Decimal,b:Decimal) -> Decimal:
+# def divide(a: Decimal,b:Decimal) -> Decimal: # LBYL sample
+#     '''Divide operation'''
+#     if b ==0:
+#         logging.error("Divsion by zero")
+#         raise ValueError("Cannot divide by zero - Exception")
+#     return a/b
+def divide(a: Decimal, b: Decimal) -> Decimal:
     '''Divide operation'''
-    if b ==0:
-        logging.error("Divsion by zero")
+    try:
+        return a / b  # Attempting division  #EAFP
+    except ZeroDivisionError:
+        logging.error("Division by zero")
         raise ValueError("Cannot divide by zero - Exception")
-    return a/b
