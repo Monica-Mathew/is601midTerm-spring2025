@@ -67,6 +67,7 @@ def clear_history():
     (['a 3 add', 'exit'], "Invalid number input: a or 3 is not a valid number.\nExiting Command line"),
     (['5 b subtract', 'exit'], "Invalid number input: 5 or b is not a valid number.\nExiting Command line"),
     (['history-show', '2 2 add', 'history-save', 'exit'], "No history available to show, start adding calculations.\nThe result of 2 add 2 is equal to 4\nAdding in memory calculation history to csv\nExiting Command line"),
+    (['history-delete', 'history-load', 'exit'], "History file has been cleared.\nNo history available to show from csv file.\nExiting Command line"),
     (['history-clear', 'history-show', '5 0 add', 'history-show', 'exit'],"No history available to show, start adding calculations.\nThe result of 5 add 0 is equal to 5\nHistory of the calculations from memory:\nCalcualtion of 5 and 0 with add, Result: 5.00\nExiting Command line")
 ])
 def test_app_operations(inputs, expected_output, capfd, monkeypatch):
