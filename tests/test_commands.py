@@ -32,7 +32,7 @@ def test_multiply_command(capfd):
     command = DivideCommand()
     command.execute(2,2)
     out = capfd.readouterr().out
-    assert out == "The result of 2 divide 2 is equal to 1\n"
+    assert out == "The result of 2 divide 2 is equal to 1.00\n"
 
 def test_app_subtract_command(capfd, monkeypatch):
     """Test that the REPL correctly handles the 'greet' command."""

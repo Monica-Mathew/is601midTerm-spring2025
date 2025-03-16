@@ -51,20 +51,20 @@ def test_app_menu_command(capfd, monkeypatch):
 @pytest.fixture(autouse=True)
 def clear_history():
     '''clearing history'''
-    Calculations.clear_history_csv()
+    Calculations.clear_history()
 
 @pytest.mark.parametrize("inputs, expected_output", [
     (['5 3 add', 'exit'], "The result of 5 add 3 is equal to 8\nExiting Command line"),
     (['10 2 subtract', 'exit'], "The result of 10 subtract 2 is equal to 8\nExiting Command line"),
     (['4 5 multiply', 'exit'], "The result of 4 multiply 5 is equal to 20\nExiting Command line"),
-    (['20 4 divide', 'exit'], "The result of 20 divide 4 is equal to 5\nExiting Command line"),
+    (['20 4 divide', 'exit'], "The result of 20 divide 4 is equal to 5.00\nExiting Command line"),
     (['2 2 modulo', 'exit'], "The result of 2 modulo 2 is equal to 0\nExiting Command line"),
     (['1 0 divide', 'exit'], "An error occured : Cannot divide by zero - Exception\nExiting Command line"),
     (['9 3 unknown', 'exit'], "No such command: unknown\nExiting Command line"),
     (['a 3 add', 'exit'], "Invalid number input: a or 3 is not a valid number.\nExiting Command line"),
     (['5 b subtract', 'exit'], "Invalid number input: 5 or b is not a valid number.\nExiting Command line"),
-    (['history-load', 'exit'], "No history available to show.\nExiting Command line"),
-    (['history-load', '5 0 add', 'history-load', 'exit'], "No history available to show.\nThe result of 5 add 0 is equal to 5\nHistory of the calculations:\n5 add 0 = 5\nExiting Command line")
+    (['history-delete', 'history-load', 'exit'], "History file has been cleared.\nNo history available to show from csv file.\nExiting Command line"),
+    (['history-clear', 'history-show', '5 0 add', 'history-show', 'exit'],"No history available to show, start adding calculations.\nThe result of 5 add 0 is equal to 5\nHistory of the calculations from memory:\nCalcualtion of 5 and 0 with add, Result: 5.00\nExiting Command line")
 ])
 def test_app_operations(inputs, expected_output, capfd, monkeypatch):
     """Test how the REPL handles various calculator operations and errors."""

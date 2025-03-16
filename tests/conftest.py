@@ -6,7 +6,6 @@ from calculator.operations import add, subtract, multiply, divide
 
 fake = Faker()
 
-
 def generate_test_data(num_records):
     '''Operation mapping'''
     operation_mappings ={
