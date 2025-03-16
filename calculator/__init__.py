@@ -17,7 +17,8 @@ class Calculator:
         # Calculations.add_calculation_to_history_csv(calculation)
         # return calculation.performOperation()
         result = calculation.performOperation()
-        Calculations.add_calculation_to_history_csv(calculation,result)
+        Calculations.add_calculation_to_history(calculation,result)
+        # Calculations.add_calculation_to_history_csv(calculation,result)
         return result
 
     @staticmethod
