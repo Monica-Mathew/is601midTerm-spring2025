@@ -36,7 +36,6 @@ def test_multiply_command(capfd):
 
 def test_app_subtract_command(capfd, monkeypatch):
     """Test that the REPL correctly handles the 'greet' command."""
-    # Simulate user entering 'greet' followed by 'exit'
     inputs = iter(['2 2 subtract', 'exit'])
     monkeypatch.setattr('builtins.input', lambda _: next(inputs))
 
