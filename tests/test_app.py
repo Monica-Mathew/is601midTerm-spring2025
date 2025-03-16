@@ -65,6 +65,7 @@ def clear_history():
     (['1 0 divide', 'exit'], "An error occured : Cannot divide by zero - Exception\nExiting Command line"),
     (['9 3 unknown', 'exit'], "No such command: unknown\nExiting Command line"),
     (['a 3 add', 'exit'], "Invalid number input: a or 3 is not a valid number.\nExiting Command line"),
+    (['5 5 add', 'history-save','history-load', 'exit'], "The result of 5 add 5 is equal to 10\nAdding in memory calculation history to csv\nHistory of the calculations loaded from csv:\n5 add 5 = 10\nExiting Command line"),
     (['5 b subtract', 'exit'], "Invalid number input: 5 or b is not a valid number.\nExiting Command line"),
     (['history-show', '2 2 add', 'history-save', 'exit'], "No history available to show, start adding calculations.\nThe result of 2 add 2 is equal to 4\nAdding in memory calculation history to csv\nExiting Command line"),
     (['history-delete', 'history-load', 'exit'], "History file has been cleared.\nNo history available to show from csv file.\nExiting Command line"),

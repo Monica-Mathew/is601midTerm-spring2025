@@ -21,10 +21,11 @@ class App:
     
     def configure_logging(self):
         logging_conf_path = self.get_environment_variable('LOGGING_CONF_PATH')
-        if os.path.exists(logging_conf_path):
-            logging.config.fileConfig(logging_conf_path, disable_existing_loggers=False)
-        else:
+        try:
+           logging.config.fileConfig(logging_conf_path, disable_existing_loggers=False)
+        except Exception as e:
             logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+            logging.error(f"Logging configuration failed: {e}, falling back to basicConfig.")
         logging.info("Logging configured.")
 
     def load_environment_variables(self):

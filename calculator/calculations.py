@@ -97,11 +97,11 @@ class Calculations:
     def delete_history_from_csv(cls):
         '''Delete the history entirely from the CSV file'''
         cls.historyPd = pd.DataFrame(columns=['num1', 'num2', 'operation', 'result'])
-        if os.path.exists(cls.csv_file_path):
+        try:
             cls.historyPd.to_csv(cls.csv_file_path, index=False)
             logging.info(f"History file '{cls.csv_file_path}' has been cleared.")
             print(f"History file has been cleared.")
-        else:
+        except:
             logging.info(f"No history file found at '{cls.csv_file_path}' to be cleared.")
             print(f"No history file to be cleared.")
 atexit.register(Calculations.save_history_on_exit)
