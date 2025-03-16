@@ -10,7 +10,13 @@ from app.commands import Command
 from dotenv import load_dotenv
 
 class App:
-    '''init def'''
+    '''App class'''
+    _instance = None  # Class level variable for singleton instance
+    def __new__(cls):
+        if cls._instance is None:  
+            cls._instance = super(App, cls).__new__(cls)
+        return cls._instance #return the same instance
+    
     def __init__(self): # Constructor
         os.makedirs('logs', exist_ok=True)
         load_dotenv() #loads from .env file contents
