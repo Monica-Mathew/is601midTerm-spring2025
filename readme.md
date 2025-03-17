@@ -77,7 +77,8 @@ By having only one instance, the Singleton pattern ensures consistent behavior a
 
 # Github actions
 GitHub Actions has been set up to with code testing and coverage. Each time code is pushed to the repository or a pull request is made to the main, the GitHub Actions workflow is triggered and ensure that the code passes all tests, we can define the actions we need in the worflow like loading environment variables etc.
-[Github action workflow ](https://github.com/Monica-Mathew/is601midTerm-spring2025/blob/main/.github/workflows/calculator-app.yml)
+[Github action workflow yml file ](https://github.com/Monica-Mathew/is601midTerm-spring2025/blob/main/.github/workflows/calculator-app.yml)
+[Github action example ](https://github.com/Monica-Mathew/is601midTerm-spring2025/actions/runs/13889625879)
 
 # Environment Variables Usage
 In application, environment variables are used to manage configuration in a secure way. The values are retreived during run time rather than hard coded in the code.
