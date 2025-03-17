@@ -5,7 +5,7 @@ This project implements a command line interface mode for Calculator with dynami
 
 ## Install
 
-1. git clone https://github.com/Monica-Mathew/is601midTerm-spring2025.git
+1. ```git clone https://github.com/Monica-Mathew/is601midTerm-spring2025.git```
 
 ## Activate virtual environment
 
@@ -15,16 +15,19 @@ This project implements a command line interface mode for Calculator with dynami
 
 ## Set up environment variables
 1. Create a `.env` file in the root directory of the project and add the following variables:
-DATA_DIRECTORY=./data FILE_NAME=calculations.csv LOGGING_CONF_PATH=logging.conf ENVIRONMENT=DEVELOPMENT
+DATA_DIRECTORY=./data 
+FILE_NAME=calculations.csv 
+LOGGING_CONF_PATH=logging.conf 
+ENVIRONMENT=DEVELOPMENT
 
-2. Otherwise, variables can be directly exported in  terminal using below commands:
+2. Otherwise, variables can be directly exported in bash terminal using below commands:
     ```bash
     export DATA_DIRECTORY=./data
     export FILE_NAME=calculations.csv
     export LOGGING_CONF_PATH=logging.conf
     export ENVIRONMENT=DEVELOPMENT
 
-# Run the file
+# Run the program
 
 1. python main.py
 On the prompt, user can enter menu to see list of operations
@@ -71,7 +74,7 @@ By having only one instance, the Singleton pattern ensures consistent behavior a
 [app __init__.py file on GitHub](https://github.com/Monica-Mathew/is601midTerm-spring2025/blob/main/app/__init__.py#L15)
 [Singleton pattern app instance in Calculations.py file on GitHub](https://github.com/Monica-Mathew/is601midTerm-spring2025/blob/main/calculator/calculations.py#L43)
 
-# Environment Variables used
+# Environment Variables Usage
 In application, environment variables are used to manage configuration in a secure way. The values are retreived during run time rather than hard coded in the code.
 eg: the ```DATA_DIRECTORY``` path holds the location for adding the csv file which holds the calculation history.
 This is fetched by ```get_environment_variable``` function from the app file.
@@ -79,7 +82,7 @@ This is fetched by ```get_environment_variable``` function from the app file.
 In github, to run the tests, I have added these variables to GitHub secrets and variables section, so during the github action workflow, these values would be picked.
 [Using secrets in GitHub Actions](https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions)
 
-# Logging
+# Logging 
 Application has comprehensive logging system to record the detailed application operations, data manipulations, errors, and informational messages. Logging config file is present to configure the logging system, and it is stored in logs folder.
 Informational logs - [logging.info code example](https://github.com/Monica-Mathew/is601midTerm-spring2025/blob/main/calculator/calculations.py#L59)
 Warning logs - [logging.warning code example](https://github.com/Monica-Mathew/is601midTerm-spring2025/blob/main/app/__init__.py#L84)
