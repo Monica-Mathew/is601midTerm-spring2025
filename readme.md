@@ -15,17 +15,18 @@ This project implements a command line interface mode for Calculator with dynami
 
 ## Set up environment variables
 1. Create a `.env` file in the root directory of the project and add the following variables:
-DATA_DIRECTORY=./data 
-FILE_NAME=calculations.csv 
-LOGGING_CONF_PATH=logging.conf 
-ENVIRONMENT=DEVELOPMENT
-
+DATA_DIRECTORY = './data'
+FILE_NAME= 'calculations.csv'
+LOGGING_CONF_PATH='logging.conf'
+ENVIRONMENT ='DEVELOPMENT'
+PLUGINS_PACKAGE_PATH = 'app.plugins'
 2. Otherwise, variables can be directly exported in bash terminal using below commands:
     ```bash
     export DATA_DIRECTORY=./data
     export FILE_NAME=calculations.csv
     export LOGGING_CONF_PATH=logging.conf
     export ENVIRONMENT=DEVELOPMENT
+    export PLUGINS_PACKAGE_PATH=app.plugins 
 
 # Run the program
 

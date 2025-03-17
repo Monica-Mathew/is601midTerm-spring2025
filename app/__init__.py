@@ -46,7 +46,7 @@ class App:
     def load_plugins(self):
         '''loading plugins dynamically'''
         # Dynamically load all plugins in the plugins directory
-        plugins_package = 'app.plugins'
+        plugins_package = self.get_environment_variable('PLUGINS_PACKAGE_PATH')
         for _, plugin_name, is_pkg in pkgutil.iter_modules([plugins_package.replace('.', '/')]):
             if is_pkg:  # Ensure it's a package
                 plugin_module = importlib.import_module(f'{plugins_package}.{plugin_name}')
