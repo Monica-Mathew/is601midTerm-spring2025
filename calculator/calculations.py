@@ -40,7 +40,7 @@ class Calculations:
 
     historyPd: pd.DataFrame  # history dataframe to store list of calculations in csv file.
 
-    app_instance = App()
+    app_instance = App() #  Singleton pattern, the __new__ method is overridden in App class to check if an instance of the class already exists, and returns it
     data_dir = app_instance.get_environment_variable('DATA_DIRECTORY') # grabbing DATA_DIRECTORY from env
     logging.info(f"Data directory path - {data_dir}")
     if not os.path.exists(data_dir):
