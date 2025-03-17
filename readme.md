@@ -87,7 +87,8 @@ eg: the ```DATA_DIRECTORY``` path holds the location for adding the csv file whi
 This is fetched by ```get_environment_variable``` function from the app file.
 [environment variable DATA_DIRECTORY ](https://github.com/Monica-Mathew/is601midTerm-spring2025/blob/main/calculator/calculations.py#L44)
 In github, to run the tests, I have added these variables to GitHub secrets and variables section, so during the github action workflow, these values would be picked.
-[Using secrets in GitHub Actions](https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions)
+[Secrets stored in Github](https://github.com/Monica-Mathew/is601midTerm-spring2025/settings/secrets/actions)
+[Using secrets in GitHub Actions docs](https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions)
 
 # Logging 
 Application has comprehensive logging system to record the detailed application operations, data manipulations, errors, and informational messages. Logging config file is present to configure the logging system, and it is stored in logs folder.
@@ -97,9 +98,11 @@ Error logs - [logging.error code example](https://github.com/Monica-Mathew/is601
 
 # Error Handling and Exceptions
 Application uses both LBYL and EAFP approach for error handling and to avoid potential errors
-LBYL (Look Before You Leap): We avoid errors by checking conditions beforehand (no need for try/catch), mainly by using conditional logic
+### LBYL
+1. LBYL (Look Before You Leap): We avoid errors by checking conditions beforehand (no need for try/catch), mainly by using conditional logic
 eg: [LBYL if condtiion code example](https://github.com/Monica-Mathew/is601midTerm-spring2025/blob/main/calculator/calculations.py#L79). Here we check if file exists before we write to it in append mode, otherwise new file would be created in else logic, avoiding any unwanted overwriting or unexpected behavior.
-EAFP (Easier to Ask for Forgiveness than Permission): This approach asumes that operations will succeed and errors are handled on the fly if it occurs.
+### EAFP
+2. EAFP (Easier to Ask for Forgiveness than Permission): This approach asumes that operations will succeed and errors are handled on the fly if it occurs.
 eg: [EAFP try except code example](https://github.com/Monica-Mathew/is601midTerm-spring2025/blob/main/app/commands/__init__.py#L28). Here we first tries to execute the command operation, and if the command specified is not present, except block catches this error gracefully and prints user-friendly message to user.
 
 
