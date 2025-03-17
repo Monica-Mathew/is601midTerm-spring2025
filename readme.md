@@ -57,15 +57,37 @@ The `Calculation` class and its methods manage the history of calculations (e.g.
 [calculations.py file on GitHub](https://github.com/Monica-Mathew/is601midTerm-spring2025/blob/main/calculator/calculations.py)
 
 ### Command Pattern
-The Command class acts as an abstract base for all  commands, and CommandHandler registers and executes the commands. The user input in the REPL loop that corresponds to different commands, and the CommandHandler invokes and executes the commands 
-[commands _init__.py file on GitHub](https://github.com/Monica-Mathew/is601midTerm-spring2025/blob/main/app/commands/__init__.py)
+The Command class acts as an abstract base for all  commands, and CommandHandler registers and executes the commands. In the REPL (Read-Eval-Print Loop), the user provides input that corresponds to specific commands. The CommandHandler captures provided input, and invokes and executes the respective command accordingly.
+[commands __init__.py file on GitHub](https://github.com/Monica-Mathew/is601midTerm-spring2025/blob/main/app/commands/__init__.py)
 
 ### Factory Method Pattern
 The create() in Calculation class is  a Factory Method because it allows  to create Calculation objects without directly instantiating the class using the constructor. This fucntion offers future flexibility to adjust how Calculation objects are created.
  [calculation.py file on GitHub](https://github.com/Monica-Mathew/is601midTerm-spring2025/blob/main/calculator/calculation.py#L17)
 
 ### Singleton Pattern
-The Singleton pattern ensures that only one instance of a class exists throughout the program. This method is called before __init__, which is used for initializing the instance and check if an instance of the class already exists. If it does, we return the existing instance, hence mainiting one global instance of App class
+The Singleton pattern ensures that only one instance of a class exists throughout the program. This method is called before __init__, which is used for initializing the instance and check if an instance of the class already exists. If it does, we return the existing instance, hence mainiting one global instance of App class, hence allows global access to the instance, ensuring that all parts of the program are working with the same object.
+ [app __init__.py file on GitHub](https://github.com/Monica-Mathew/is601midTerm-spring2025/blob/main/app/__init__.py#L15)
+
+# Environment Variables used
+In application, environment variables are used to manage configuration in a secure way. The values are retreived during run time rather than hard coded in the code.
+eg: the ```DATA_DIRECTORY``` is for adding the csv file which holds the calculation history.
+This is fetched by ```get_environment_variable``` function from the app file.
+[environment variable DATA_DIRECTORY ](https://github.com/Monica-Mathew/is601midTerm-spring2025/blob/main/calculator/calculations.py#L44)
+In github, to run the tests, I have added these variables to GitHub secrets and variables section, so during the github action workflow, these values would be picked
+[Using secrets in GitHub Actions](https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions)
+
+# Logging
+Application has comprehensive logging system to record the detailed application operations, data manipulations, errors, and informational messages. Logging config is present to configure the logging system, and it is stored in logs folder.
+Informational logs - [logging.info code example](https://github.com/Monica-Mathew/is601midTerm-spring2025/blob/main/calculator/calculations.py#L59)
+Warning logs - [logging.warning code example](https://github.com/Monica-Mathew/is601midTerm-spring2025/blob/main/app/__init__.py#L84)
+Error logs - [logging.error code example](https://github.com/Monica-Mathew/is601midTerm-spring2025/blob/main/calculator/operations.py#L25)
+
+# Error Handling and Exceptions
+Application uses both LBYL and EAFP approach for error handling and to avoid potential errors
+LBYL (Look Before You Leap): We avoid errors by checking conditions beforehand (no need for try/catch), mainly by using conditional logic
+eg: [LBYL if condtiion code example](https://github.com/Monica-Mathew/is601midTerm-spring2025/blob/main/calculator/calculations.py#L79). Here we check if file exists before we write to it in append mode, otherwise new file would be created in else logic, avoiding any unwanted overwriting or unexpected behavior
+EAFP (Easier to Ask for Forgiveness than Permission): This approach asumes that operations will succeed and errors are handled on the fly if it occurs.
+eg: [EAFP try except code example](https://github.com/Monica-Mathew/is601midTerm-spring2025/blob/main/app/commands/__init__.py#L28). Here we first execute the command operation, 
 
 
 # Testing
