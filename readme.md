@@ -105,7 +105,9 @@ eg: [LBYL if condtiion code example](https://github.com/Monica-Mathew/is601midTe
 2. EAFP (Easier to Ask for Forgiveness than Permission): This approach asumes that operations will succeed and errors are handled on the fly if it occurs.
 eg: [EAFP try except code example](https://github.com/Monica-Mathew/is601midTerm-spring2025/blob/main/app/commands/__init__.py#L28). Here we first tries to execute the command operation, and if the command specified is not present, except block catches this error gracefully and prints user-friendly message to user.
 
-
+# Demonstration
+ [Video demonstration of the calculator app](https://drive.google.com/file/d/1sVcjny9JiqGn8pnvm-uigAqc4ojp9bdS/view?usp=sharing)
+ 
 # Testing
 1. pytest
 2. pytest --pylint 
