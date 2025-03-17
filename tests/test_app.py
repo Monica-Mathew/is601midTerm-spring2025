@@ -69,7 +69,7 @@ def clear_history():
     (['history-show', '2 2 add', 'history-save', 'exit'], "No history available to show, start adding calculations.\nThe result of 2 add 2 is equal to 4\nAdding in memory calculation history to csv\nExiting Command line"),
     (['history-delete', 'history-load', 'exit'], "History file has been cleared.\nNo history available to show from csv file.\nExiting Command line"),
     (['history-clear', 'history-show', '5 0 add', 'history-show','history-save','history-load','exit'],
-     "No history available to show, start adding calculations.\nThe result of 5 add 0 is equal to 5\nHistory of the calculations from memory:\nCalcualtion of 5 and 0 with add, Result: 5.00\nAdding in memory calculation history to csv\nHistory of the calculations loaded from csv:\n5 add 0 = 5\nExiting Command line")
+     "No history available to show, start adding calculations.\nThe result of 5 add 0 is equal to 5\nHistory of the calculations from memory:\nCalcualtion of 5 and 0 with add, Result: 5.00\nAdding in memory calculation history to csv\nHistory of the calculations loaded from csv:\n5 add 0 = 5.0\nExiting Command line")
 ])
 def test_app_operations(inputs, expected_output, capfd, monkeypatch):
     """Test how the REPL handles various calculator operations and errors."""

@@ -14,7 +14,7 @@ class Calculations:
     @classmethod # adding as a classmethod to bind to the class itself to have it shared across all instances of clas
     def add_calculation_to_history(cls, calculation:Calculation,result):
         '''add a new calculation to the history'''
-        cls.history.append((calculation,result))
+        cls.history.append((calculation,round(result, 2)))
 
     @classmethod
     def get_history(cls):
