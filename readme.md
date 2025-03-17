@@ -45,13 +45,28 @@ On the prompt, user can enter menu to see list of operations
 ## Example Usage
  ```3 5 add```
  ### Output:
- ```2025-03-16 19:45:20,412 - root - INFO - Add command function invoked The result of 3 add 5 is equal to 8```
+ ```2025-03-16 19:45:20,412 - root - INFO - Add command function invoked```
+    ```The result of 3 add 5 is equal to 8```
+
 
 # Design Patterns Used
 ### Facade Pattern
+Each plugin Implementation the user interaction is a facade class  -  which invokes appropiate methods from Calculations class.
+Calculations class simplified the interface to interact with Pandas calculation history and data file handlling.
+The `Calculation` class and its methods manage the history of calculations (e.g., `add_calculation_to_history()`, `save_history_on_exit()`, `get_history_csv()`) without having to worry about saving/loading them to/from a CSV file. 
+[calculations.py file on GitHub](https://github.com/Monica-Mathew/is601midTerm-spring2025/blob/main/calculator/calculations.py)
+
 ### Command Pattern
+The Command class acts as an abstract base for all  commands, and CommandHandler registers and executes the commands. The user input in the REPL loop that corresponds to different commands, and the CommandHandler invokes and executes the commands 
+[commands _init__.py file on GitHub](https://github.com/Monica-Mathew/is601midTerm-spring2025/blob/main/app/commands/__init__.py)
+
 ### Factory Method Pattern
+The create() in Calculation class is  a Factory Method because it allows  to create Calculation objects without directly instantiating the class using the constructor. This fucntion offers future flexibility to adjust how Calculation objects are created.
+ [calculation.py file on GitHub](https://github.com/Monica-Mathew/is601midTerm-spring2025/blob/main/calculator/calculation.py#L17)
+
 ### Singleton Pattern
+The Singleton pattern ensures that only one instance of a class exists throughout the program. This method is called before __init__, which is used for initializing the instance and check if an instance of the class already exists. If it does, we return the existing instance, hence mainiting one global instance of App class
+
 
 # Testing
 1. pytest
